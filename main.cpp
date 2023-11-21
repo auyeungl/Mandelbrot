@@ -10,8 +10,8 @@ using namespace std;
 int main()
 {
 	// Create a video mode object
-	int pixelWidth = VideoMode::getDesktopMode().width / 4;
-	int pixelHeight = VideoMode::getDesktopMode().height / 4;
+	int pixelWidth = VideoMode::getDesktopMode().width / 2;
+	int pixelHeight = VideoMode::getDesktopMode().height / 2;
 	VideoMode vm(pixelWidth, pixelHeight);
 	// Create and open a window for the game
 	RenderWindow window(vm, "Mandelbrot", Style::Default);
@@ -91,14 +91,14 @@ int main()
 
 		//Handle the text initialization + setting
 		Text text;
-		text.setPosition(10, 10);
+		//text.setPosition(10, 10);
 		text.setCharacterSize(20);
 		text.setFont(comic);
-		text.setFillColor(Color::White);
+		text.setFillColor(Color::Blue);
 		plane.loadText(text);
-		window.draw(text);
 
 		window.draw(plane);
+		window.draw(text);
 
 		window.display();
 

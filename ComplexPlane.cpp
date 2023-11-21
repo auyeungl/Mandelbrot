@@ -74,7 +74,6 @@ void ComplexPlane::updateRender()
 
 				this->iterationsToRGB(this->countIterations(this->mapPixelToCoords(Vector2i(j, i))),r,g,b);	
 				m_vArray[j + i * width].color = { r, g, b };
-				cout << j + i * width << " " << height* width <<endl;
 
 			}
 		}
@@ -112,9 +111,9 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 	}
 	else
 	{
-		r = 255-3*count;
-		b = 255-3*count;
-		g = 255-3*count;
+		r = 255-4*count;
+		b = 255-1*count;
+		g = 255-2*count;
 	}
 }
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
