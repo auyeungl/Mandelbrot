@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
+#include <complex>
+#include <sstream>
 const unsigned int MAX_ITER = 64;
 const float BASE_WIDTH = 4.0;
 const float BASE_HEIGHT = 4.0;
@@ -11,7 +12,7 @@ enum State {CALCULATING, DISPLAYING};
 using namespace std;
 using namespace sf;
 
-class ComplexPlane :private Drawable
+class ComplexPlane :public Drawable
 {
 	public: 
 		ComplexPlane(int pixelWidth, int pixelHeight);

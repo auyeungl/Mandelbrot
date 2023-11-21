@@ -107,7 +107,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\VertexArrays\VertexArray.cpp" />
     <ClCompile Include="ComplexPlane.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
