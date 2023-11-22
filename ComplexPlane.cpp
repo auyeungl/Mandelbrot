@@ -1,4 +1,5 @@
 #include "ComplexPlane.h"
+#include <thread>
 using namespace std;
 using namespace sf;
 
@@ -64,7 +65,11 @@ void ComplexPlane::updateRender()
 {
 	if (m_state == CALCULATING)
 	{
-		for (int i = 0; i < height; i++)
+		thread thread1(&ComplexPlane::threadTest, this, 3, 2);
+		thread thread2(&ComplexPlane::threadTest, this, 3, 3);
+
+
+		for (int i = 0; i < height/3; i++)
 		{
 			for (int j = 0; j < width; j++)
 			{
@@ -77,6 +82,8 @@ void ComplexPlane::updateRender()
 
 			}
 		}
+		thread1.join();
+		thread2.join();
 		m_state = DISPLAYING;
 	}
 }
@@ -122,4 +129,21 @@ Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
 	float planeY = m_plane_center.y - (mousePixel.y - m_pixel_size.y / 2.0) / (m_pixel_size.y / 2.0) * (m_plane_size.y)*m_aspectRatio;
 	return Vector2f(planeX, planeY);
 
+}
+
+void ComplexPlane::threadTest(int threadCount, int threadNum)
+{
+	for (int i = (threadNum-1)*height/threadCount; i< threadNum*height/threadCount; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			Uint8 r, g, b;
+
+			m_vArray[i * width + j].position = { (float)j, (float)i };
+
+			this->iterationsToRGB(this->countIterations(this->mapPixelToCoords(Vector2i(j, i))), r, g, b);
+			m_vArray[j + i * width].color = { r, g, b };
+
+		}
+	}
 }
